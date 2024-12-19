@@ -5,8 +5,11 @@ namespace App\Entity;
 use App\Repository\RobotRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: RobotRepository::class)]
+#[Vich\Uploadable]
 class Robot
 {
     #[ORM\Id]
@@ -23,8 +26,14 @@ class Robot
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2, nullable: true)]
     private ?string $price = null;
 
-    #[ORM\Column(length: 255)]
+    #[Vich\UploadableField(mapping: 'robot', fileNameProperty: 'image')]
+    private ?File $imageFile = null;    
+
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'robots')]
     private ?Category $category = null;
@@ -75,6 +84,21 @@ class Robot
         $this->price = $price;
 
         return $this;
+    }
+
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 
     public function getImage(): ?string
