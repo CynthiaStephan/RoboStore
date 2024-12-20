@@ -22,7 +22,9 @@
         "symfony/framework-bundle": "7.2.*",
         "symfony/runtime": "7.2.*",
         "symfony/yaml": "7.2.*",
-        "vich/uploader-bundle": "^2.5"
+        "vich/uploader-bundle": "^2.5",
+        "symfony/ux-twig-component": "^2.0"
+
     },
     "config": {
         "allow-plugins": {

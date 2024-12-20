@@ -33,7 +33,8 @@ class RobotCrudController extends AbstractCrudController
 
             FormField::addColumn(4),
             TextField::new('imageFile')
-                ->setFormType(VichImageType::class),
+                ->setFormType(VichImageType::class)
+                ->onlyOnForms(),
             ImageField::new('image')
                 ->setBasePath('/upload/robots')
                 ->onlyOnIndex(),
