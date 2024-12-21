@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Robot;
 use App\Repository\RobotRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -23,6 +24,14 @@ class RobotController extends AbstractController
         return $this->render('robot/robot.html.twig', [
             'controller_name' => 'RobotController',
             'robots' => $robots,
+        ]);
+    }
+
+    #[Route('/robot/{id}', name:'robot_details')]
+    public function showRobot(Robot $robot)
+    {
+        return $this->render('robot/show.html.twig', [
+            'robot' => $robot,
         ]);
     }
 }

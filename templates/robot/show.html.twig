@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Robot Show!{% endblock %}
+
+{% block body %}
+
+    <div class="example-wrapper">
+        <h1>Bijour ✅</h1>
+        
+
+                <p>{{robot.name}}</p>
+                <div class="description">{{robot.description|raw}}</div>
+                <img src="{{ asset('/upload/robots/' ~ robot.image) }}" alt="{{ robot.name }}">
+    </div>
+    
+{% endblock %}
+
