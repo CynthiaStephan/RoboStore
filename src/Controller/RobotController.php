@@ -13,15 +13,16 @@ class RobotController extends AbstractController
     #[Route('/robot', name: 'app_robot')]
     public function index(RobotRepository $robotRepository, Request $request): Response
     {
-        // $robots = $robotRepository->findAll();
-        $robots = $robotRepository->paginationRobot(1, 5);
-        dump($robots);
-        
+        // On récupère dans la requete le parametre 'page' définir la page cible
+        $page = $request->query->getInt('page', 1);
+        // nombre d'éléments rendu
+        $limit = 5;
+        // requete envoyé dans le repository 
+        $robots = $robotRepository->paginationRobot($page, $limit);
 
         return $this->render('robot/robot.html.twig', [
             'controller_name' => 'RobotController',
             'robots' => $robots,
-            // 'pagination' => $pagination,
         ]);
     }
 }
