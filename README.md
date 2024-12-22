@@ -71,3 +71,7 @@ Dans un futur pas si lointain, **Rebecca Kline** a révolutionné le monde avec 
    ```bash
    docker compose down --remove-orphans
    ```
+## Credits
+Projet construit en utilisant la base [Docker Symfony](https://github.com/dunglas/symfony-docker) <br>
+
+Created by [Kévin Dunglas](https://dunglas.dev), co-maintained by [Maxime Helias](https://twitter.com/maxhelias) and sponsored by [Les-Tilleuls.coop](https://les-tilleuls.coop).
