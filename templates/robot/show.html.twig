@@ -1,18 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello Robot Show!{% endblock %}
+{% block title %}RoboStore | Trouvez le Robot Qui Correspond à Votre Vision{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/show.css') }}">
+{% endblock %}
 
 {% block body %}
+    <main class="show">
+        <div class="robot-image">
+            <img src="{{ asset('/upload/robots/' ~ robot.image) }}" alt="{{ robot.name }}">
+        </div>
 
-    <div class="example-wrapper">
-        <h1>Bijour ✅</h1>
-        
+        <div class="robot-info">
+            <h1>{{robot.name}}</h1>
+            <p class="price">{{ robot.price }} €</p>
+            <p class="description">{{robot.description|raw}}</p>
 
-                <p>{{robot.name}}</p>
-                <div class="description">{{robot.description|raw}}</div>
-                <img src="{{ asset('/upload/robots/' ~ robot.image) }}" alt="{{ robot.name }}">
-                <p>{{ robot.price }} €</p>
-    </div>
+            <a class="cta-robots" href="{{ path('app_robot') }}">Ajouter au panier</a>
+        </div>
+    </main>
     
 {% endblock %}
 

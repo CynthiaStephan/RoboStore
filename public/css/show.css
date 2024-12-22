@@ -1,0 +1,33 @@
+main.show{
+    padding: var(--sp-72);
+    display: grid;
+    grid-template-columns: 55% 1fr;
+    gap: var(--sp-72);
+    align-items: center;
+
+    & h1{
+        margin: var(--sp-24) 0 var(--sp-12);
+    }
+
+    & .robot-image{
+        height: 800px;
+        width: auto;
+    }
+
+    & .robot-info{
+        display: flex;
+        flex-direction: column;
+    }
+
+    & .price{
+        font-size: var(--fs-lg);
+        font-weight: 600;
+    }
+
+    & a.cta-robots{
+        margin: var(--sp-24) auto;
+    }
+}
+
+
+

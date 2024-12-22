@@ -1,3 +1,6 @@
+h1{
+    padding-left: var(--sp-52);
+}
 section.product{
     display: flex;
     flex-direction: column;
