@@ -1,51 +1,73 @@
-# Symfony Docker
+# RotoStore - Création d'une boutique en ligne en Symfony
 
-A [Docker](https://www.docker.com/)-based installer and runtime for the [Symfony](https://symfony.com) web framework,
-with [FrankenPHP](https://frankenphp.dev) and [Caddy](https://caddyserver.com/) inside!
+## **Description du Projet**
 
-![CI](https://github.com/dunglas/symfony-docker/workflows/CI/badge.svg)
+Dans un futur pas si lointain, **Rebecca Kline** a révolutionné le monde avec une gamme de robots allant des assistants personnels aux robots industriels ultra-performants. **RoboStore** est une boutique en ligne fictive permettant aux utilisateurs de :  
+- Parcourir un catalogue de robots.  
+- Consulter des fiches produits détaillées.  
+- Ajouter des robots au panier pour une éventuelle commande.
 
-## Getting Started
+---
 
-1. If not already done, [install Docker Compose](https://docs.docker.com/compose/install/) (v2.10+)
-2. Run `docker compose build --no-cache` to build fresh images
-3. Run `docker compose up --pull always -d --wait` to set up and start a fresh Symfony project
-4. Open `https://localhost` in your favorite web browser and [accept the auto-generated TLS certificate](https://stackoverflow.com/a/15076602/1352334)
-5. Run `docker compose down --remove-orphans` to stop the Docker containers.
+![Screen de la page d'accueil du projet](./docs/Screen-robostore.jpg)
 
-## Features
+## **Objectifs du Projet**
 
-* Production, development and CI ready
-* Just 1 service by default
-* Blazing-fast performance thanks to [the worker mode of FrankenPHP](https://github.com/dunglas/frankenphp/blob/main/docs/worker.md) (automatically enabled in prod mode)
-* [Installation of extra Docker Compose services](docs/extra-services.md) with Symfony Flex
-* Automatic HTTPS (in dev and prod)
-* HTTP/3 and [Early Hints](https://symfony.com/blog/new-in-symfony-6-3-early-hints) support
-* Real-time messaging thanks to a built-in [Mercure hub](https://symfony.com/doc/current/mercure.html)
-* [Vulcain](https://vulcain.rocks) support
-* Native [XDebug](docs/xdebug.md) integration
-* Super-readable configuration
+- Développer une boutique en ligne simple avec Symfony.  
+- Appliquer les principes de conception orientée objet, notamment SOLID.  
+- Organiser le projet en architecture MVC.  
+- Utiliser Twig pour le rendu des vues et MySQL pour la persistance des données.  
 
-**Enjoy!**
 
-## Docs
+## **Fonctionnalités Ciblées**
 
-1. [Options available](docs/options.md)
-2. [Using Symfony Docker with an existing project](docs/existing-project.md)
-3. [Support for extra services](docs/extra-services.md)
-4. [Deploying in production](docs/production.md)
-5. [Debugging with Xdebug](docs/xdebug.md)
-6. [TLS Certificates](docs/tls.md)
-7. [Using MySQL instead of PostgreSQL](docs/mysql.md)
-8. [Using Alpine Linux instead of Debian](docs/alpine.md)
-9. [Using a Makefile](docs/makefile.md)
-10. [Updating the template](docs/updating.md)
-11. [Troubleshooting](docs/troubleshooting.md)
+### 1. **Catalogue de Robots**
+- Affichage d’une liste paginée de robots avec :  
+  - Nom, image, prix et description courte.
 
-## License
+### 2. **Fiches Produits**
+- Détail de chaque robot avec :  
+  - Nom, description complète, prix et image.
 
-Symfony Docker is available under the MIT License.
+### 3. **Système de Panier**
+- Ajouter des robots au panier.  
+- Consulter les robots sélectionnés.  
 
-## Credits
 
-Created by [Kévin Dunglas](https://dunglas.dev), co-maintained by [Maxime Helias](https://twitter.com/maxhelias) and sponsored by [Les-Tilleuls.coop](https://les-tilleuls.coop).
+## **Technologies Utilisées**
+
+- **PHP** : Backend.
+- **CSS** : Mise en page 
+- **Symfony** : Framework pour structurer l’application.  
+- **Twig** : Moteur de templates pour les vues.  
+- **MySQL** : Base de données relationnelle.  
+- **Composer** : Gestionnaire de dépendances.  
+- **Docker** : Configuration et déploiement de l’environnement de développement.  
+
+---
+
+## **Guide de Lancement du Projet**
+
+### **Étapes d’Installation**
+
+1. **Construction des Images Docker**  
+   Exécutez la commande suivante pour construire des images fraîches :  
+   ```bash
+   docker compose build --no-cache
+   ```
+
+2. **Lancement des Conteneurs**  
+   Démarrez les conteneurs Docker et configurez automatiquement un projet Symfony :  
+   ```bash
+   docker compose up --pull always -d --wait
+   ```
+
+3. **Accès à l’Application**  
+   Ouvrez votre navigateur et rendez-vous sur :  
+   [https://localhost](https://localhost).  
+
+4. **Arrêt des Conteneurs**  
+   Une fois terminé, vous pouvez arrêter et supprimer les conteneurs avec :  
+   ```bash
+   docker compose down --remove-orphans
+   ```
