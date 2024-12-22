@@ -17,7 +17,7 @@ class RobotController extends AbstractController
         // On récupère dans la requete le parametre 'page' définir la page cible
         $page = $request->query->getInt('page', 1);
         // nombre d'éléments rendu
-        $limit = 5;
+        $limit = 6;
         // requete envoyé dans le repository 
         $robots = $robotRepository->paginationRobot($page, $limit);
 

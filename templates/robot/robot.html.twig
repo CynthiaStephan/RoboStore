@@ -1,24 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RobotController!{% endblock %}
+{% block title %}RoboStore | Trouvez le Robot Qui Correspond à Votre Vision{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/catalog.css') }}">
+{% endblock %}
 
 {% block body %}
 
-    <div class="example-wrapper">
-        <h1>Hello {{ controller_name }}! ✅</h1>
+    <main>
+            <h1>
+                Votre Robot, Votre Aventure : 
+                <br>Explorez l'Excellence Technologique
+            </h1>
 
-        {% for robot in robots %}
-            <a href="{{ path('robot_details', {'id': robot.id}) }}">
-                <p>{{robot.name}}</p>
-                <div class="description">{{robot.description|raw}}</div>
-                <img src="{{ asset('/upload/robots/' ~ robot.image) }}" alt="{{ robot.name }}">
-            </a>
-        {% endfor %}
-    </div>
-    
-    <div class="navigation">
-        {{ knp_pagination_render(robots) }}
-    </div>
+            <section class="product">
+                <div class="product-frame">
+                    {% for robot in robots %}
+                        <a class="product-link" href="{{ path('robot_details', {'id': robot.id}) }}">
+                            <div class="image-frame">
+                                <img src="{{ asset('/upload/robots/' ~ robot.image) }}" alt="{{ robot.name }}">
+                            </div>
+                            
+                            <div class="product-info">
+                                <h3 class="home-robot-name">{{robot.name}}</h3>
+                                <div class="home-robot-description">{{robot.shortDescription}}</div>
+                                <p class="home-robot-price">{{ robot.price }} €</p>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+        
+        <div class="navigation">
+            {{ knp_pagination_render(robots) }}
+        </div>
+    </main>
 {% endblock %}
 
 {% block script %}
@@ -26,7 +43,7 @@
         function truncate(text, maxlength) {
             return (text.length > maxlength) ? text.slice(0, maxlength - 1) + '…' : text;
         }
-        let descriptions = document.querySelectorAll('div.description');
+        let descriptions = document.querySelectorAll('div.home-robot-description');
         descriptions.forEach(description => {
             let truncatedText = truncate(description.textContent, 250);
             description.textContent = truncatedText;

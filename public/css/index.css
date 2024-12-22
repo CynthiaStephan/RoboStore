@@ -106,3 +106,38 @@ img{
     height: 100%;
     object-fit: cover;
 }
+
+.pagination {
+    padding: var(--sp-52) 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pagination a {
+    text-decoration: none;
+    color: var(--color-font);
+    transition: color 0.2s;
+    font-weight: 500;
+    font-size: var(--fs-base);
+}
+
+.pagination a:hover {
+    color: var(--color-green);
+}
+
+.pagination .page{
+    padding: 4px 12px;
+}
+
+.pagination .current {
+    font-weight: bold;
+    font-size: var(--fs-base);
+    color: var(--color-bg);
+    background-color: var(--color-green);
+    padding: 4px 12px;
+}
+
+svg{
+    vertical-align: middle;
+}

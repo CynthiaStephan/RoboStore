@@ -1,0 +1,62 @@
+section.product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & div.product-frame{
+        /* display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 80%;
+        gap: var(--sp-52);
+        justify-content: center;
+        padding: var(--sp-72) 0; */
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        justify-content: center;
+        gap: var(--sp-32);
+    }
+
+    & p.product-presentation{
+        max-width: 900px;
+    }
+                                                  
+    & a.product-link{
+        width: 26rem;
+        color: var(--color-purple);
+        border: 1px solid black;
+        transition: all 400ms cubic-bezier(.23, 1, 0.32, 1);
+
+        &:hover{
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        }
+
+        &:active{
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+        }
+    }
+
+    & div.image-frame{
+        height: 30rem;
+    } 
+
+    & h3{
+        margin: var(--sp-12) 0;
+    }
+
+    & img{
+        object-position: center;
+    }
+
+    & .product-info{
+        padding:  0 var(--sp-24) var(--sp-24) ;
+    }
+
+    & .product-info .home-robot-price{
+        font-size: var(--fs-md);
+        font-weight: 600;
+        text-align: end;
+        
+    }
+}
