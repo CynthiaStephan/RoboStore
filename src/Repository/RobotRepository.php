@@ -34,6 +34,21 @@ class RobotRepository extends ServiceEntityRepository
         );
     }
 
+    /**
+     * Find element in the database by the name. 
+     * Insensitive to the case
+     * @param string $name
+     * @return array
+     */
+    public function FindByName(string $name): array
+    {
+        return $this->createQueryBuilder('r')
+            ->where('LOWER(r.name) = :name')
+            ->setParameter('name', mb_strtolower($name))
+            ->getQuery()
+            ->getResult();
+    }
+
     
     //    /**
     //     * @return Robot[] Returns an array of Robot o ebjects

@@ -11,6 +11,7 @@
                 <p>{{robot.name}}</p>
                 <div class="description">{{robot.description|raw}}</div>
                 <img src="{{ asset('/upload/robots/' ~ robot.image) }}" alt="{{ robot.name }}">
+                <p>{{ robot.price }} €</p>
     </div>
     
 {% endblock %}

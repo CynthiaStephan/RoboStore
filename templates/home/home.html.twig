@@ -27,16 +27,17 @@
                 Il y a des robots… et il y a ceux qui redéfinissent ce que la technologie peut accomplir. Découvrez nos modèles les plus convoités, ceux qui allient design intemporel, performance inégalée, et une capacité à se fondre dans votre vie comme s'ils en avaient toujours fait partie.
             </p>
             <div>
-                {# Faire une bouche #}
-                <div>
-                    <img class="home-robot-image" src="" alt="">
+                {% for robot in robots %}
                     <div>
-                        <h3 class="home-robot-name">T-800</h3>
-                        <p class="home-robot-description">
-                            Adoptez le T-800 : quand la technologie rencontre la détermination.</p>
-                        <p class="home-robot-price">22€</p>
-                    </div>
-                </div>
+                        <img class="home-robot-image" src="" alt="">
+                        <div>
+                            <h3 class="home-robot-name">{{ robot.name }}</h3>
+                            <p class="home-robot-description">
+                                Adoptez le T-800 : quand la technologie rencontre la détermination.</p>
+                            <p class="home-robot-price">22€</p>
+                        </div>
+                    </div>            
+                {% endfor %}
 
             </div>
         </section>
