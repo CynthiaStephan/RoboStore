@@ -1,84 +1,119 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}RoboStore{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
 
 {% block body %}
-    <main>
+    <main class="home">
         <section class="hero">
-            <div>
+            <div class="text">
                 <h1>Une révolution robotique, juste pour vous.</h1>
                 <p>
                     Imaginez un compagnon qui comprend vos besoins, anticipe vos désirs et vous simplifie la vie. Chez RoboStore, chaque modèle est une invitation à explorer un futur où l'extraordinaire devient quotidien.
                 </p>
+                <a class="cta-robots" href="{{ path('app_robot') }}">Voir notre catalogue</a>
             </div>
-            <div>
-                <img src="{{ asset('images/ContemplativeRetroRobot.jpeg') }}" alt="Femme et robot observant">
-            </div>
+            <img src="{{ asset('images/ContemplativeRetroRobot.jpeg') }}" alt="Femme et robot observant">
         </section>
-        <section>
+        <section class="experience">
             <h2>Vivez l'Expérience RoboStore</h2>
             <p>
                 Imaginez… Vous arrivez chez vous, fatigué, et chaque détail est déjà pris en charge. Les lumières s'ajustent, votre robot vous accueille. Ce n'est pas seulement une machine : c'est un partenaire, un prolongement de vous-même. RoboStore, c'est le futur à portée de main, prêt à rendre votre quotidien plus simple, plus riche, et infiniment plus inspirant.
             </p>
         </section>
-        <section>
+        <section class="product">
             <h2>Les Icônes de Notre Collection</h2>
-            <p>
+            <p class="product-presentation">
                 Il y a des robots… et il y a ceux qui redéfinissent ce que la technologie peut accomplir. Découvrez nos modèles les plus convoités, ceux qui allient design intemporel, performance inégalée, et une capacité à se fondre dans votre vie comme s'ils en avaient toujours fait partie.
             </p>
-            <div>
-                {% for robot in robots %}
-                    <div>
-                        <img class="home-robot-image" src="" alt="">
-                        <div>
-                            <h3 class="home-robot-name">{{ robot.name }}</h3>
-                            <p class="home-robot-description">
-                                Adoptez le T-800 : quand la technologie rencontre la détermination.</p>
-                            <p class="home-robot-price">22€</p>
-                        </div>
-                    </div>            
-                {% endfor %}
 
+            <div class="product-frame">
+                {% for robot in robots %}
+                    <a class="product-link" href="{{ path('robot_details', {'id': robot.id}) }}">
+                        <div>
+                            <div class="image-frame">
+                                <img class="home-robot-image" src="{{ asset('upload/robots/') ~ robot.image }}" alt="{{ robot.name }}">
+                            </div>
+
+                            <div class="product-info">
+                                <h3 class="home-robot-name">{{ robot.name }}</h3>
+                                <p class="home-robot-description">{{ robot.shortDescription }}</p>
+                                <p class="home-robot-price"> {{ robot.price }} €</p>
+                            </div>
+                        </div>
+                    </a>    
+                {% endfor %}
             </div>
+            
+            <a class="cta-robots" href="{{ path('app_robot') }}">Voir notre catalogue</a>
         </section>
 
-        <section>
-            <h2>Une Vie Redéfinie, Un Quotidien Réinventé</h2>
-            <div>
+        <section class="presentation one">
+            <div class="home-presentation-text">
+                <h2>Une Vie Redéfinie, Un Quotidien Réinventé</h2>
                 <p>
                     Un robot RoboStore, c'est bien plus qu'un simple appareil. C'est une invitation à vivre autrement. Réveillez-vous dans une maison qui travaille pour vous. Faites plus avec moins. Détendez-vous en sachant que vous avez à vos côtés une technologie qui anticipe vos attentes et qui transforme vos rêves en réalité.
                 </p>
             </div>
-            <img src="" alt="">
+
+            <div class="presentation-image-frame">
+                <img src="{{ asset('images/FuturisticOffice.jpeg') }}" alt="femme et robot">
+            </div>
+
         </section>
 
-        <section>
-            <h2>L'Art et la Technologie Réunis</h2>
-            <img src="" alt="">
-            <div>
+        <section class="presentation two">
+            <div class="presentation-image-frame">
+                <img src="{{ asset('images/WorkingonRobot.jpeg') }}" alt="femme et robot">
+            </div>
+
+            <div class="home-presentation-text">
+                <h2>L'Art et la Technologie Réunis</h2>
                 <p>
                     Chez RoboStore, chaque détail compte. Nos robots ne sont pas simplement performants : ils sont une œuvre d'art en mouvement. Le design rencontre la fonction, créant des machines aussi élégantes qu'utiles. Lorsque vous choisissez un robot RoboStore, vous choisissez bien plus qu'un outil : vous choisissez une vision.
                 </p>
             </div>
         </section>
-        <section>
+
+        <section class="clients">
             <h2>Des Histoires de Vie Transformées</h2>
-            <p>
-                <span>Jean- </span>
-                "Un jour, il m'a dit 'Hasta la vista, baby' en sortant les poubelles. Depuis, je suis conquis. Et mes voisins me saluent avec un respect... suspect." 
-            </p>
-            <p>
-                <span>Clara- </span>
-                "TARS m'a sauvé d'un embouteillage en recalibrant l'itinéraire ET en me racontant une blague sur les trous noirs. Bonus : il m'a appris à plier des serviettes en origami."
-            </p>
-            <p>
-                <span>Sophie- </span>
-                "Data m'a appris trois langues en une semaine, mais son plus grand exploit ? Gagner à Trivial Pursuit contre ma tante Micheline. Elle ne s'en est toujours pas remise."
-            </p>
+            <div>
+                <p>
+                    
+                    "Un jour, il m'a dit 'Hasta la vista, baby' en sortant les poubelles. Depuis, je suis conquis. Et mes voisins me saluent avec un respect... suspect." <br><span> -- Jean</span>
+                </p>
+
+                <p>
+                    
+                    "TARS m'a sauvé d'un embouteillage en recalibrant l'itinéraire ET en me racontant une blague sur les trous noirs. Bonus : il m'a appris à plier des serviettes en origami." 
+                    <br><span> -- Clara</span>
+
+                </p>
+
+                <p>
+                    
+                    "Data m'a aidée à organiser ma vie comme un pro, mais ses blagues me laissent souvent perplexe. Au moins, il ne s'arrête jamais de travailler... ni de tenter des jeux de mots incompréhensibles." 
+                    <br><span> -- Sophie</span>
+                </p>
+            </div>
+
         </section>
-        <section>
-            <h2>Rejoignez la Révolution RoboStore</h2>
-            <p>Le futur n'attend pas. Rejoignez une communauté qui partage votre vision et votre envie de vivre pleinement chaque instant. Ensemble, faisons du rêve une réalité.</p>
+
+        <section class="cta">
+            <div class="home-presentation-text three">
+                <h2>Rejoignez la Révolution RoboStore</h2>
+
+                <p>
+                    Le futur n'attend pas. Rejoignez une communauté qui partage votre vision et votre envie de vivre pleinement chaque instant. Ensemble, faisons du rêve une réalité.
+                </p>
+
+                <a class="cta-robots" href="{{ path('app_robot') }}">Voir notre catalogue</a>
+            </div>
+            <div class="presentation-image-frame">
+                <img src="{{ asset('images/GirlRobotContemplation.jpeg')}}" alt="femme et robot">
+            </div>
         </section>
 
     </main>

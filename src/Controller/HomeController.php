@@ -17,7 +17,8 @@ class HomeController extends AbstractController
         $robots = [];
         foreach ($robotsName as $name){
             $robots[] = $robotRepository->FindByName($name)[0];
-         }
+        }
+        dump($robots);
         return $this->render('home/home.html.twig', [
             'robots' => $robots
         ]);

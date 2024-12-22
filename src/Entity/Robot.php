@@ -38,6 +38,9 @@ class Robot
     #[ORM\ManyToOne(inversedBy: 'robots')]
     private ?Category $category = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $shortDescription  = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +124,18 @@ class Robot
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->shortDescription;
+    }
+
+    public function setShortDescription(?string $shortDescription): static
+    {
+        $this->shortDescription = $shortDescription;
 
         return $this;
     }

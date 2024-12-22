@@ -26,6 +26,7 @@ class RobotCrudController extends AbstractCrudController
             FormField::addColumn(8),
             IdField::new('id')->hideOnForm(),
             TextField::new('name'),
+            TextField::new('shortDescription'),
             TextEditorField::new('description'),
             MoneyField::new('price')->setCurrency('EUR'),
             AssociationField::new('category'),
