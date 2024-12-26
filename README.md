@@ -38,17 +38,17 @@ Dans un futur pas si lointain, **Rebecca Kline** a révolutionné le monde avec 
 
 - **PHP** : Backend.
 - **CSS** : Mise en page 
-- **Symfony** : Framework pour structurer l’application.  
+- **Symfony** : Framework pour structurer l'application.  
 - **Twig** : Moteur de templates pour les vues.  
 - **MySQL** : Base de données relationnelle.  
 - **Composer** : Gestionnaire de dépendances.  
-- **Docker** : Configuration et déploiement de l’environnement de développement.  
+- **Docker** : Configuration et déploiement de l'environnement de développement.  
 
 ---
 
 ## **Guide de Lancement du Projet**
 
-### **Étapes d’Installation**
+### **Étapes d'Installation**
 
 1. **Construction des Images Docker**  
    Exécutez la commande suivante pour construire des images fraîches :  
@@ -62,7 +62,7 @@ Dans un futur pas si lointain, **Rebecca Kline** a révolutionné le monde avec 
    docker compose up --pull always -d --wait
    ```
 
-3. **Accès à l’Application**  
+3. **Accès à l'Application**  
    Ouvrez votre navigateur et rendez-vous sur :  
    [https://localhost](https://localhost).  
 
