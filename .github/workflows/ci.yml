@@ -8,22 +8,7 @@ on:
 
 jobs:
   tests:
-    name: Run Symfony Tests
     runs-on: ubuntu-latest
-
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: symfony_test
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping --silent"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
 
     steps:
       - name: Checkout Code
@@ -34,25 +19,16 @@ jobs:
         with:
           php-version: 8.3
           extensions: mbstring, intl, pdo_mysql
-          ini-values: date.timezone=UTC
-          coverage: none
 
-      - name: Install Composer Dependencies
-        run: |
-          composer install --prefer-dist --no-progress --no-suggest
+      - name: Install Dependencies
+        run: composer install
 
-      - name: Create .env.test.local
-        run: |
-          echo "APP_ENV=test" > .env.test.local
-          echo "DATABASE_URL=mysql://root:root@127.0.0.1:3306/symfony_test" >> .env.test.local
-
-      - name: Run Symfony Console Commands
+      - name: Run Symfony Commands
         run: |
           php bin/console doctrine:database:create --if-not-exists
           php bin/console doctrine:schema:update --force
-          php bin/console cache:clear
 
-      - name: Run Tests
+      - name: Run PHPUnit
         run: php bin/phpunit --log-junit junit.xml
 
       - name: Upload Test Report
