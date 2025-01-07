@@ -1,4 +1,4 @@
-name: Symfony CI Pipeline
+name: PHPUnit Tests
 
 on:
   push:
@@ -7,26 +7,23 @@ on:
   pull_request:
 
 jobs:
-  tests:
+  phpunit_test:
     runs-on: ubuntu-latest
+    container:
+      image: php:8.3
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.3
-          extensions: mbstring, intl, pdo_mysql
-
-      - name: Install Dependencies
-        run: composer install
-
-      - name: Run Symfony Commands
+      - name: Update System and Install Unzip
         run: |
-          php bin/console doctrine:database:create --if-not-exists
-          php bin/console doctrine:schema:update --force
+          apt-get update && apt-get install -y unzip
+
+      - name: Install Composer
+        run: |
+          curl -sS https://getcomposer.org/installer | php
+          php composer.phar install
 
       - name: Run PHPUnit
         run: php bin/phpunit --log-junit junit.xml
