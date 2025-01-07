@@ -1,15 +1,63 @@
-stages: 
-  - test
+name: Symfony CI Pipeline
 
-phpunit_test:
-  stage: test
-  image: php:8.3
-  before_script:
-    - apt-get update && apt-get install -y unzip
-    - curl -sS https://getcomposer.org/installer | php
-    - php composer.phar install
-  script:
-    - php bin/phpunit --log-junit junit.xml
-  artifacts:
-    reports:
-      junit: junit.xml
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  tests:
+    name: Run Symfony Tests
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: symfony_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.3
+          extensions: mbstring, intl, pdo_mysql
+          ini-values: date.timezone=UTC
+          coverage: none
+
+      - name: Install Composer Dependencies
+        run: |
+          composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Create .env.test.local
+        run: |
+          echo "APP_ENV=test" > .env.test.local
+          echo "DATABASE_URL=mysql://root:root@127.0.0.1:3306/symfony_test" >> .env.test.local
+
+      - name: Run Symfony Console Commands
+        run: |
+          php bin/console doctrine:database:create --if-not-exists
+          php bin/console doctrine:schema:update --force
+          php bin/console cache:clear
+
+      - name: Run Tests
+        run: php bin/phpunit --log-junit junit.xml
+
+      - name: Upload Test Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: junit-report
+          path: junit.xml
