@@ -41,6 +41,9 @@ class Robot
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $shortDescription  = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $stock = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -136,6 +139,18 @@ class Robot
     public function setShortDescription(?string $shortDescription): static
     {
         $this->shortDescription = $shortDescription;
+
+        return $this;
+    }
+
+    public function getStock(): ?int
+    {
+        return $this->stock;
+    }
+
+    public function setStock(?int $stock): static
+    {
+        $this->stock = $stock;
 
         return $this;
     }
