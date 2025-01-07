@@ -8,9 +8,6 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-# Ignorer tous les fichiers .env
-/.env
-/.env.*
 
 ###> symfony/phpunit-bridge ###
 .phpunit.result.cache
